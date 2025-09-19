@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #input_append{
+            background-color: rgb(255, 255, 255);
+
+            border: solid;
+            border-radius: 2px 2px 2px 2px;
+            border-color: rgba(0, 0, 0, 0.5);
+        }
+        #add{
+            background-color: blue;
+            color: aliceblue;
+
+            border: solid;
+            border-radius: 2px 2px 2px 2px;
+            border-color: rgba(0, 0, 0, 0.5);
+        }
+        #reset{
+            background-color: green;
+            color: aliceblue;
+
+            border: solid;
+            border-radius: 2px 2px 2px 2px;
+            border-color: rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left: 50%; 
+            margin-left: -150px;
+            top: 50%; 
+            margin-top: -220px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dynamic Web Page</h1>
+        <input type="text" id="input_append">
+    
+        <button onclick="listener_append()" id="add">등록</button>
+        <button onclick="delete_all()" id="reset">삭제</button>
+    
+        <!--여기에 리스트가 생성됨-->
+        <div id="div_append"></div>
+    </div>
+    
+
+    <script>
+        function listener_append(){
+            let div_append = document.getElementById("div_append");
+            let input_append = document.getElementById("input_append").value;
+            
+            if(input_append === "" || input_append == "undefined"){
+                return false;
+            }else{
+                div_append.innerHTML += "<li>"+ input_append
+            }
+            document.getElementById("input_append").value = ""  // 등록 후, 입력창 초기화
+        }
+
+        function delete_all(){
+            let div_append = document.getElementById("div_append");
+            div_append.innerHTML="";    // 리스트 초기화
+            document.getElementById("input_append").value = ""  //입력창까지 초기화
+        }
+    </script>
+</body>
+</html>
