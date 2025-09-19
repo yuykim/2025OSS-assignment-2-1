@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>네이버 : 회원가입</title>
+
+    <style>
+        .container {
+            width: 400px;
+            height: 1200px;
+            position: absolute;
+            left: 50%; 
+            margin-left: -150px;
+            top: 25%; 
+            margin-top: -250px;
+        }
+        body{
+            background-color: #F8f9fa;
+        }
+        input[type=text], input[type=email], input[type=password], input[type=date], input[type=tel]{
+            width: 95%;
+            padding: 12px 20px;
+            box-sizing: border-box;
+
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+        #id{
+            border-radius: 4px 4px 0px 0px;
+            border: 1px 1px 1px 1px solid rgba(0, 0, 0, 0.1);
+        }
+        #pswd1{
+            border-radius: 0px;
+            margin: -1px 0px 0px;
+        }
+        #pswd2{
+            border-radius: 0px 0px 4px 4px;
+            margin: -1px 0px 5px;
+        }
+        #passwordhintQ{
+            border-radius: 4px 4px 0px 0px ;
+        }
+        #hint1{
+            font-size: small;
+            margin: 0px 10px 0px 5px;
+        }
+        #divEmail{
+            padding:5px 0px 0px 0px;
+            width: 100%;
+            height: 30px;
+        }
+        #divName{
+            height: 50px;
+        }
+        #divBirthday{
+            height: 80px;
+        }
+        #birth{
+            font-size: small;
+            
+            margin: 0px 10px 0px 5px;
+        }
+        select{
+            width: 380px;
+            height: 20px;
+            border-radius: 0px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        textarea{
+            width: 374px;
+            border-radius: 0px 0px 4px 4px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            margin: -1px 0px 0px;
+        }
+
+        #nation, #gender{
+            width: 40%;
+            display: inline;
+        }
+        fieldset{
+            background-color: white;
+        }
+        #submit_button{
+            position: absolute;
+            margin-top: 20px;
+        }
+        button, select, input[type=date]{
+            cursor: pointer;
+        }
+        #btnJoin{
+            width: 400px;
+            height: 40px;
+            border-radius: 4px; 
+        }
+        #selNationNo{
+            margin-top: 20px;
+        }
+        #bottom{
+            margin-top: 20px;
+        }
+        #check_button{
+            padding-bottom: 10px;
+            padding-left: 4px;
+        }
+    </style>
+
+    <script>
+        function checkPasswords() {
+            let pswd1 = document.getElementById("pswd1").value;
+            let pswd2 = document.getElementById("pswd2").value;
+            
+            if (pswd1 === "" || pswd2 === ""){
+                alert("빈칸을 모두 채워주세요")
+            }else if (pswd1 === pswd2) {
+                alert("입력하신 패스워드가 일치합니다.");
+            } else {
+                alert("입력하신 패스워드가 일치하지 않습니다.");
+            }
+        }
+        function checkBOX(checkbox) {
+            let checkboxes = document.getElementsByName('checkboxes');
+
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = checkbox.checked;
+            }
+        }
+        function checkALL() {
+            let id = document.getElementById("id").value;
+            let pswd1 = document.getElementById("pswd1").value;
+            let pswd2 = document.getElementById("pswd2").value;
+            let name = document.getElementById("name").value;
+            let birthdayInput = document.getElementById("birthdayInput").value
+
+            let radiosgender = document.getElementsByName("identityGender");
+            let radiosforigner = document.getElementsByName("foreigner");
+            let Checked1, Checked2 = false;
+
+            let phoneNo = document.getElementById("phoneNo").value;
+
+            let Check1 = document.getElementById("Check1");
+            let Check2 = document.getElementById("agree_01");
+            let Check3 = document.getElementById("agree_02");
+            let Check4 = document.getElementById("agree_03");
+            let Check5 = document.getElementById("agree_04");
+            let Check6 = document.getElementById("agree_05");
+
+            for (let i = 0; i < 2; i++) {
+                if (radiosgender[i].checked) {
+                    Checked1 = true;
+                }
+                if(radiosforigner[i].checked){
+                    Checked2 = true;
+                }
+                if(Checked1 === true && Checked2 === true){
+                    break;
+                }
+            }
+
+            if(id === ""){
+                alert("아이디를 입력해주세요")
+            }
+            else if (pswd1 === "" || pswd2 === ""){
+                alert("비밀번호를 입력해주세요")
+            }
+            else if(name === ""){
+                alert("이름을 입력해주세요")
+            }
+            else if(birthdayInput === ""){
+                alert("생년월일을 입력해주세요")
+            }
+            else if (!Checked1) {
+                alert("성별을 선택해 주세요.");
+            } 
+            else if (!Checked2) {
+                alert("국적을 선택해 주세요.");
+            }
+            else if (phoneNo === ""){
+                alert("전화번호를 입력해주세요.");
+            }
+            else if(!Check1.checked){
+                alert("'실명 인증된 아이디로 가입'에 체크해 주세요");
+            }
+            else if(!Check2.checked){
+                alert("'개인정보 이용'에 체크해 주세요");
+            }
+            else if(!Check3.checked){
+                alert("'고유식별정보 처리'에 체크해 주세요");
+            }
+            else if(!Check4.checked){
+                alert("'통신사 이용약관'에 체크해 주세요");
+            }
+            else if(!Check5.checked){
+                alert("'인증사 이용약관'에 체크해 주세요");
+            }
+            else if(!Check6.checked){
+                alert("'네이버 개인정보수집'에 체크해 주세요");
+            }
+        }
+
+    </script>
+</head>
+
+<!-- 원래 페이지의 URL -->
+<!-- https://nid.naver.com/user2/join/begin?token_sjoin=VTzhbiEHPIT3fHr4&langSelect=ko_KR&checkRealname=Y&termsLocation=Y&termsEmail=Y&termsEvent=Y -->
+
+<body>
+    <div class="container">
+        <!--네이버 클릭시 네이버로 이동-->
+        <h1 class="logo_naver">
+            <a href="http://naver.com" class="link">
+                <span class="blind">네이버</span>
+            </a>
+        </h1>
+
+        <div class="form_content">
+            <form id="join_form" method="post" action="/user2/join/end" class="form">
+                <!--체크박스 type = checkbox -->
+                <div id="divToggle">
+                    <input type="checkbox" id="Check1" name="Check1">
+                    <label for="Check1">실명 인증된 아이디로 가입</label>
+                </div>
+
+                <div id="top">
+                    <!--아이디 입력받기 type = text -->
+                    <div class="form_item user" id="divId">
+                        <input type="text" id="id" name="id" placeholder="아이디 (@naver.com)" class="input" value="" maxlength="20"/>
+                    </div>
+                    <!--비밀번호 입력받기 type = password -->
+                    <div class="form_item lock password" id="divPasswd">
+                        <input type="password" id="pswd1" name="pswd1" placeholder="비밀번호" class="input" value="" maxlength="20" required/>
+                        <input type="password" id="pswd2" name="pswd2" placeholder="비밀번호 (재입력)" class="input" value="" maxlength="20" required/>
+                        <div id="check_button"><button type="button" onclick="checkPasswords()">비밀번호 확인</button></div>
+                        <div id="hint">
+                            <div >
+                                <p id="hint1">[선택] 비밀번호를 찾을 때 사용할 문제와 정답을 입력하세요</p>
+                            </div>
+                            <select name="Q" id="passwordhintQ">
+                                <option value="1">태어난 도시의 이름은?</option>
+                                <option value="2">어릴적 키우던 애완동물의 이름은?</option>
+                                <option value="3">과거 담임선생님의 성함은?</option>
+                                <option value="4">가장 좋아하는 영화 제목은?</option>
+                            </select>
+                            <br>
+                            <textarea name="content" cols="40" rows="2" placeholder="정답입력하기"></textarea>
+                        </div>
+                    </div>
+
+                    <!--이메일 입력받기 type = email-->
+                    <div class="form_item email" id="divEmail">
+                        <input type="email" id="email" name="email" placeholder="[선택] 이메일주소 (비밀번호 찾기 등 본인 확인용)" class="input" value="" maxlength="100" />
+                    </div>
+                </div>
+                <br>
+                <div id="middle">
+                    <!--이름 입력받기 text-->
+                    <div class="form_item user" id="divName">
+                        <input type="text" id="name" name="name" placeholder="이름" class="input" value="" maxlength="40" />
+                    </div>
+
+                    <!--생년월일 입력받기 date-->
+                    <div class="form_item calendar" id="divBirthday">
+                        <div id="birth">생년월일</div>
+                        <input type="date" id="birthdayInput" class="input" placeholder="이름" name="birthdayInput"/>
+                    </div>
+                                
+                    <!--성별 선택하기 type = radio-->
+                    <fieldset id="gender">
+                        <legend>성별</legend>
+                        <input type="radio" id="identityGender1" name="identityGender" value="M" class="blind">
+                        <label for="identityGender1">남자</label>
+                        <br>
+                        <input type="radio" id="identityGender2" name="identityGender" value="F" class="blind">
+                        <label for="identityGender2">여자</label>
+                    </fieldset>
+                                    
+                    <!--국적 선택하기 type = radio-->
+                    <fieldset id="nation">
+                        <legend>국적</legend>
+                        <input type="radio" id="foreigner1" name="foreigner" value="K" class="blind">
+                        <label for="foreigner1">내국인</label>
+                        <br>
+                        <input type="radio" id="foreigner2" name="foreigner" value="F" class="blind">
+                        <label for="foreigner2">외국인</label>
+                    </fieldset>
+
+                    <!--국제 번호 선택하기 select-->
+                    <div class="select_box" id="selNationNo">
+                        <select id="nationNo" name="nationNo" class="select">
+                            <option value="233" >
+                                가나 +233
+                            </option>
+                            <option value="31" >
+                                네덜란드 +31
+                            </option>
+                            <option value="82" selected>
+                                대한민국 +82                                        
+                            </option>
+                            <option value="49" >
+                                독일 +49
+                            </option>
+                            <option value="1" >
+                                미국/캐나다 +1
+                            </option>
+                            <option value="966" >
+                                사우디아라비아 +966
+                            </option>
+                            <option value="597" >
+                                수리남 +597
+                            </option>
+                            <option value="81" >
+                                일본 +81
+                            </option>
+                        </select>
+                    </div>
+
+                    <!--통신사 선택하기-->
+                    <div>
+                        <select>
+                            <option value="skt">
+                                SKT
+                            </option>
+                            <option value="skt_alteul">
+                                SKT 알뜰폰
+                            </option>
+                            <option value="kt">
+                                KT
+                            </option>
+                            <option value="kt_alteul">
+                                KT 알뜰폰
+                            </option>
+                            <option value="lg">
+                                LG U+
+                            </option>
+                            <option value="lg_alteul">
+                                LG U+ 알뜰폰
+                            </option>
+                        </select>
+                    </div>
+
+                    <!--전화번호 입력하기 type = tel-->
+                    <div class="form_item phone" id="divPhoneNo">
+                        <input type="tel" id="phoneNo" name="phoneNo" placeholder="휴대전화번호" class="input" value="" maxlength="16" />
+                    </div>
+                </div>
+
+                <div id="bottom">
+                    <!--약관 목록-->
+                    <fieldset>
+                        <legend>약관 목록</legend>
+            
+                        <div class="check_circle">
+                            <input type="checkbox" id="agree_all" name="checkboxes" onclick="checkBOX(this)">
+                            <label for="agree_all">
+                                <em class="option point">[필수]</em>
+                                <span class="text">인증 약관 전체동의</span>
+                            </label>
+                        </div>
+                        
+                        <div class="check_normal">
+                            <input type="checkbox" id="agree_01" name="checkboxes">
+                            <label for="agree_01">
+                                <span class="text">개인정보 이용</span>
+                            </label>
+                            <a href="https://nid.naver.com/user2/common/terms/terms2?t=viewPersonalInfoTerms&v=1" target="_blank" class="link_arrow">
+                                <span class="blind">약관 전문보기</span>
+                            </a>
+                        </div>
+            
+                        <div class="check_normal">
+                            <input type="checkbox" id="agree_02" name="checkboxes">
+                            <label for="agree_02">
+                                <span class="text">고유식별정보 처리</span>
+                            </label>
+                            <a href="https://nid.naver.com/user2/common/terms/terms2?t=viewUniqInfoTerms&v=1" target="_blank" class="link_arrow">
+                                <span class="blind">약관 전문보기</span>
+                            </a>
+                        </div>
+            
+                        <div class="check_normal">
+                            <input type="checkbox" id="agree_03" name="checkboxes">
+                            <label for="agree_03">
+                                <span class="text">통신사 이용약관</span>
+                            </label>
+                            <a href="https://nid.naver.com/user2/common/terms/terms2?t=viewCellPhoneCarriersTerms&v=1" target="_blank" class="link_arrow">
+                                <span class="blind">약관 전문보기</span>
+                            </a>
+                        </div>
+            
+                        <div class="check_normal">
+                            <input type="checkbox" id="agree_04" name="checkboxes">
+                            <label for="agree_04">
+                                <span class="text">인증사 이용약관</span>
+                            </label>
+                            <a href="https://nid.naver.com/user2/common/terms/terms2?t=viewServiceTerms&v=1" target="_blank" class="link_arrow">
+                                <span class="blind">약관 전문보기</span>
+                            </a>
+                        </div>
+                                
+                        <div class="check_normal">
+                            <input type="checkbox" id="agree_05" name="checkboxes">
+                            <label for="agree_05">
+                                <span class="text">네이버 개인정보수집</span>
+                            </label>
+                            <a href="https://nid.naver.com/user2/common/terms/terms2?t=viewNaverTerms&v=2" target="_blank" class="link_arrow">
+                                <span class="blind">약관 전문보기</span>
+                            </a>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!--제출 버튼-->
+                <div id="submit_button">
+                    <button type="button" class="btn_submit" id="btnJoin" onclick="checkALL()">가입하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
